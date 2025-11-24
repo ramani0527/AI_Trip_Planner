@@ -3,7 +3,7 @@ import datetime
 import requests
 import sys
 
-BASE_URL = "https://localhost:8000"
+BASE_URL = "http://localhost:8000"
 
 st.set_page_config(
     page_icon= "TPAA",
@@ -24,7 +24,7 @@ with st.form(key= "query_form", clear_on_submit= True):
 if submit_button and user_input.strip():
     try:
         with st.spinner("bot is thinking..."):
-           payload = { "question ": user_input}
+           payload = {"question": user_input}
            response = requests.post(f"{BASE_URL}/query",json=payload)
         if response.status_code == 200:
             answer = response.json().get("answer","No answer returned")
